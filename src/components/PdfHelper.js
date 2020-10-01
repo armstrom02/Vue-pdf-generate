@@ -8,6 +8,13 @@ const colors = {
     light_blue: [176, 168, 242]
 }
 
+function getFormattedDate(date) {
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+    return `${day}.${month}.${year}`;
+}
+
 export const generateFooter = (doc, pageNumber, x = 0, y = 792) => {
 
     const length = 595;
@@ -42,7 +49,7 @@ export const generateFooter = (doc, pageNumber, x = 0, y = 792) => {
         .setTextColor(...colors.white)
         .text('info@vesttoo.com', x + 421, y + 38, { align: "left" });
 
-    doc.addImage(images.phone, 'JPEG', x + 490, y + 30, 12, 12);
+    doc.addImage(images.phone, 'JPEG', x + 488, y + 30, 12, 12);
     doc.setFont("helvetica")
         .setFontSize(8)
         .setTextColor(...colors.white)
@@ -56,24 +63,27 @@ export const generateHeader = (doc, pageNumber, x = 0, y = 0) => {
 
     doc.addImage(images.logo, 'JPEG', x + 30, y + 30, 143.5, 26);
 
+    var date = new Date();
     doc.setFont("helvetica")
         .setFontSize(12)
         .setTextColor(...colors.grey)
-        .text('24.08.2020', x + 520, y + 50, { align: "center", maxWidth: "300" });
+        .text(getFormattedDate(date), x + 520, y + 50, { align: "center", maxWidth: "300" });
 }
 
 export const generateProjectName = (doc, companyName, text, reportName, x = 300, y = 350) => {
-    doc.setFont("helvetica")
+    doc.setFont("helvetica", "bold")
         .setFontSize(30)
         .setTextColor(...colors.blue)
         .text(companyName, x, y, { align: "center", maxWidth: "300" });
-
-    doc.setLineWidth(1).setDrawColor(...colors.blue).line(x - 27.5, y + 35, x + 22.5, y + 35);
 
     doc.setFont("helvetica")
         .setFontSize(30)
         .setTextColor(...colors.blue)
         .text(text, x, y + 80, { align: "center", maxWidth: "300" });
+
+    doc.setFont("helvetica", "normal")
+
+    doc.setLineWidth(1).setDrawColor(...colors.blue).line(x - 27.5, y + 35, x + 22.5, y + 35);
 
     doc.setFont("helvetica")
         .setFontSize(20)
