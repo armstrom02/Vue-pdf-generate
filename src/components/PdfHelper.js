@@ -24,21 +24,25 @@ export const generateFooter = (doc, pageNumber, x = 0, y = 792) => {
         .setTextColor(...colors.white)
         .text('Our vision is to create a world where insurance and alternative capital are fused and globally accessible', x + 190, y + 18, { align: "left" });
 
+    doc.addImage(images.copyRight, 'JPEG', x + 190, y + 30, 12, 12);
     doc.setFont("helvetica")
-        .setFontSize(8)
+        .setFontSize(7.5)
         .setTextColor(...colors.white)
-        .text('2020 Vesttoo Proprietary & Confidential', x + 190, y + 38, { align: "left" });
+        .text('2020 Vesttoo Proprietary & Confidential', x + 205, y + 38, { align: "left" });
 
+    doc.addImage(images.web, 'JPEG', x + 345, y + 30, 12, 12);
     doc.setFont("helvetica")
-        .setFontSize(8)
+        .setFontSize(7.5)
         .setTextColor(...colors.white)
-        .text('vesttoo.com ', x + 350, y + 38, { align: "left" });
+        .text('vesttoo.com ', x + 358, y + 38, { align: "left" });
 
+    doc.addImage(images.email, 'JPEG', x + 408, y + 30, 12, 12);
     doc.setFont("helvetica")
-        .setFontSize(8)
+        .setFontSize(7.5)
         .setTextColor(...colors.white)
-        .text('info@vesttoo.com', x + 420, y + 38, { align: "left" });
+        .text('info@vesttoo.com', x + 421, y + 38, { align: "left" });
 
+    doc.addImage(images.phone, 'JPEG', x + 490, y + 30, 12, 12);
     doc.setFont("helvetica")
         .setFontSize(8)
         .setTextColor(...colors.white)
@@ -116,10 +120,10 @@ export const generateHTML = (doc, id, x, y) => {
 }
 
 export const generateHTML2Image = async (doc, id, x, y, width, height) => {
-    try{
+    try {
         let canvas = await html2canvas(document.getElementById(id));
         doc.addImage(canvas, 'JPEG', x, y, width, height);
-    }catch(error){
+    } catch (error) {
         throw new Error("Failed to generate Image from HTML");
     }
 }

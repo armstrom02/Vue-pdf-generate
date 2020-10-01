@@ -91,7 +91,7 @@ export default {
       });
 
       // await generateHTML2Image(doc,"content",80,400,500,250);
-      generateProjectName(doc, "Company Name", "Vesttoo", "ReInsurance Report");
+      generateProjectName(doc, "{Company Name}", "Vesttoo", "ReInsurance Report");
 
       /* ------------------------------- Second Page ------------------------------ */
 
